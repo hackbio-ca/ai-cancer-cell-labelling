@@ -6,12 +6,18 @@ from .serializers import ImageSerializer
 from .models import ImageM
 import base64
 from PIL import Image
+import os
+import time
 
 # Create your views here.
 
 class RetrieveImageView(APIView):
     def get(self, request, format=None):
-        image = base64.b64encode(open("test.png", "rb").read())
+        while not os.path.exists("temp\\test.png"):
+            time.sleep(0.5)
+
+
+        image = base64.b64encode(open("temp\\test.png", "rb").read())
 
         content_type = "image/png"
     
