@@ -95,7 +95,7 @@ def visualize_gradcam(img_tensor, model, target_layer, class_idx=None, save_path
     ax[1].set_title('Grad-CAM')
     ax[1].axis('off')
 
-    plt.show()
+    # plt.show()
 
     if save_path is not None:
         # Save the Grad-CAM image as a file
@@ -160,6 +160,9 @@ def main():
     img_index = 15
     # Visualize Grad-CAM for the first image in the dataset
     visualize_gradcam(image, model, target_layer, save_path="gradcam_output.png")
+
+    print(prediction)
+    return prediction[0] < prediction[1]
 
 
 if __name__ == "__main__":

@@ -14,11 +14,12 @@ from FeedForward import main
 
 class RetrieveImageView(APIView):
     def get(self, request, format=None):
-        while not os.path.exists("temp\\test.png"):
+        main()
+        while not os.path.exists("gradcam_output.png"):
             time.sleep(0.5)
 
 
-        image = base64.b64encode(open("temp\\test.png", "rb").read())
+        image = base64.b64encode(open("gradcam_output.png", "rb").read())
 
         content_type = "image/png"
     
@@ -31,6 +32,7 @@ class RetrieveImageView(APIView):
 class RetrieveResultView(APIView):
     def get(self, request, format=None):
         result = main()
+        print(result)
 
         return Response(result, content_type="application/json")
 
