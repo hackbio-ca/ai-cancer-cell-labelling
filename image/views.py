@@ -31,6 +31,7 @@ class RetrieveImageView(APIView):
 class RetrieveResultView(APIView):
     def get(self, request, format=None):
         result = main()
+        print(result)
 
         return Response(result, content_type="application/json")
 

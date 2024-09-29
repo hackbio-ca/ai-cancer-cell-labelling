@@ -9,6 +9,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 from skimage import io
 import os
+from os import listdir
+from os.path import isfile, join
+from os import walk
+
 
 import torch
 import numpy as np
@@ -56,8 +60,13 @@ class Net3(nn.Module):
 
 
 def main():
-    img_path = "test.png"        
-    image = io.imread(img_path)
+    path = "media\\images"
+    file_name = ""
+    for (dirpath, dirnames, filenames) in walk("media\\images"):  
+        file_name = filenames[0]
+        break
+
+    image = io.imread(path + "\\" + file_name)
     ## Apply transformations to the image
     image = transforms.ToTensor()(image)
 
@@ -69,8 +78,9 @@ def main():
 
     prediction = model(image)
     prediction = prediction.tolist()
+    os.remove(path + "\\" + file_name)
 
-    return prediction[0] > prediction[1]
+    return prediction[0] < prediction[1]
 
 
 if __name__ == "__main__":
