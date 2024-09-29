@@ -70,10 +70,7 @@ def main():
     prediction = model(image)
     prediction = prediction.tolist()
 
-    if prediction[0] > prediction[1]:
-        print("Benign")
-    else:
-        print("Malignant")
+    return prediction[0] > prediction[1]
 
 
 if __name__ == "__main__":

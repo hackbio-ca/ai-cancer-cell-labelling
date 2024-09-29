@@ -8,6 +8,7 @@ import base64
 from PIL import Image
 import os
 import time
+from FeedForward import main
 
 # Create your views here.
 
@@ -26,6 +27,12 @@ class RetrieveImageView(APIView):
 
 
         return resp
+
+class RetrieveResultView(APIView):
+    def get(self, request, format=None):
+        result = main()
+
+        return Response(result, content_type="application/json")
 
 class UploadImageView(APIView):
     def post(self, request):
