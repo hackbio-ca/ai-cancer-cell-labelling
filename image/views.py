@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from .serializers import ImageSerializer
+from .models import Image
 
 # Create your views here.
 
@@ -32,20 +33,22 @@ class UploadImageView(APIView):
     def post(self, request):
         try:
             data = self.request.data
+            print(data)
 
             image = data['image']
-            alt_text = data['alt_text']
+            print(image)
 
             Image.objects.create(
-                image=image,
-                alt_text=alt_text
+                image = image
             )
+
 
             return Response(
                 {'success':"Image Uploaded successfully"},
-                stats = 201
+                status = 201
             )
-        except:
+        except Exception as err:
+            print(err)
             return Response (
                 {'error': 'Something went wrong when uploading images'},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
