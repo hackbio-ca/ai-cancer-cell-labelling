@@ -14,6 +14,9 @@ export default function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
+      if(!update) {
+        return ;
+      }
       const config = {
         headers: {
           'Accept': 'application/json'
@@ -54,7 +57,7 @@ export default function Home() {
         <button className="w-40 h-10 bg-gray-100 flex justify-center items-center rounded-xl bold m-10" onClick={onClick}>Get Result</button>
       </form>
         <div className="flex flex-col justify-center items-center content-center" style={{"position": "relative" ,"right": "12em", "visibility": visibility ? "visible":"hidden"}}>
-          <h1>{cancer? "This cell has a malignant tumor": "This cell has no malignant tumor."}</h1>
+          <h1 className="bg-gray-100 p-5 rounded-xl">{cancer? "This cell has a malignant tumor": "This cell has no malignant tumor."}</h1>
         {/* <img width="500" height="500"  src={image} key={Date.now()} alt="temp" /> */}
         <button className="mt-10 w-40 h-10 bg-gray-100 flex justify-center items-center rounded-xl bold" onClick={reset}>Reset</button>
       </div>
