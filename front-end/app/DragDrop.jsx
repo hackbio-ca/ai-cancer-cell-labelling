@@ -4,7 +4,7 @@ import {FileUploader} from "react-drag-drop-files";
 import axios from 'axios'
 
 
-function DragDrop(setUpdated) {
+function DragDrop() {
 
     const handleChange = async (e) => {
 
