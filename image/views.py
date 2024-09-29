@@ -3,31 +3,23 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from .serializers import ImageSerializer
-from .models import Image
+from .models import ImageM
+import base64
+from PIL import Image
 
 # Create your views here.
 
 class RetrieveImageView(APIView):
     def get(self, request, format=None):
-        try:
-            if Image.objects.all().exists():
-                images = Image.objects.all()
-                images = ImageSerializer(images, many=True)
+        image = base64.b64encode(open("test.png", "rb").read())
 
-                return Response(
-                    {'images':images.data},
-                    status=status.HTTP_200_OK
-                )
-            else:
-                return Response (
-                    {'error': 'Something went wrong when retrieving images'},
-                    status=status.HTTP_400_BAD_REQUEST
-                )
-        except:
-            return Response (
-                {'error': 'Something went wrong when retrieving images'},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
+        content_type = "image/png"
+    
+        resp = Response(image, content_type=content_type)
+        resp["Cache-Control"] = "no-cache"
+
+
+        return resp
 
 class UploadImageView(APIView):
     def post(self, request):
@@ -38,7 +30,7 @@ class UploadImageView(APIView):
             image = data['image']
             print(image)
 
-            Image.objects.create(
+            ImageM.objects.create(
                 image = image
             )
 
