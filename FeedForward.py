@@ -156,7 +156,7 @@ def main():
     # Usage Example:
     # Assume you are using Net2 model
     # model = Net3()
-    target_layer = model.conv2  # You can choose any convolutional layer for Grad-CAM
+    target_layer = model.conv2 # You can choose any convolutional layer for Grad-CAM
     img_index = 15
     # Visualize Grad-CAM for the first image in the dataset
     visualize_gradcam(image, model, target_layer, save_path="gradcam_output.png")

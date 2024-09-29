@@ -11,7 +11,6 @@ export default function Home() {
   const [update, setUpdate] = useState(false);
   const [visibility, setVis] = useState(false);
   const [cancer, setCancer] = useState(null);
-
   useEffect(() => {
     const fetchData = async () => {
       if(!update) {

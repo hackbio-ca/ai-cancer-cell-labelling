@@ -16,7 +16,7 @@ class RetrieveImageView(APIView):
     def get(self, request, format=None):
         main()
         while not os.path.exists("gradcam_output.png"):
-            time.sleep(0.5)
+            time.sleep(0.5) 
 
 
         image = base64.b64encode(open("gradcam_output.png", "rb").read())
@@ -33,7 +33,7 @@ class RetrieveResultView(APIView):
     def get(self, request, format=None):
         result = main()
         print(result)
-
+        os.remove("media\\images\\test.png")
         return Response(result, content_type="application/json")
 
 class UploadImageView(APIView):
