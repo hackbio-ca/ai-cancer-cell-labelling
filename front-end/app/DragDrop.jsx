@@ -4,7 +4,7 @@ import {FileUploader} from "react-drag-drop-files";
 import axios from 'axios'
 
 
-function DragDrop() {
+function DragDrop(setUpdated) {
 
     const handleChange = async (e) => {
 
@@ -22,6 +22,7 @@ function DragDrop() {
 
         try {
             const res = await axios.post("http://localhost:8000/api/image/upload",body, config);
+            setUpdated(true);
             if(res.status == 200) {
                 return;
             }
