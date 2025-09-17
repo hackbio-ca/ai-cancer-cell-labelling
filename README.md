@@ -1,6 +1,6 @@
 # ai-cancer-cell-labelling
 
-** Toronto Bioinformatics Hackathon, 2024**
+**Toronto Bioinformatics Hackathon, 2024**
 
 Use deep learning models to automate the identification and labelling of cancer cells in microscopy images, improving diagnostic efficiency and reducing human error.
 
